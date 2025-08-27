@@ -3,6 +3,7 @@ import { ClientsModule } from '@nestjs/microservices';
 import { rabbitMQConfig } from 'src/config/rabbitmq.config';
 import { NotificationController } from './notification.controller';
 import { NotificationService } from './notification.service';
+import { NotificationConsumer } from './notification.consumer';
 
 @Module({
   imports: [
@@ -14,7 +15,7 @@ import { NotificationService } from './notification.service';
       },
     ]),
   ],
-  controllers: [NotificationController],
+  controllers: [NotificationController, NotificationConsumer],
   providers: [NotificationService],
   exports: [NotificationService],
 })

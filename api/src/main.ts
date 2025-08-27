@@ -9,6 +9,7 @@ async function bootstrap() {
 
   app.enableCors();
   app.useGlobalPipes(new ValidationPipe());
+  app.setGlobalPrefix('api');
 
   app.connectMicroservice<MicroserviceOptions>(rabbitMQConfig);
 
@@ -16,5 +17,4 @@ async function bootstrap() {
 
   await app.listen(process.env.PORT ?? 3000);
 }
-
 bootstrap();
