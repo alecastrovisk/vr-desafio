@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { ClientProxy } from '@nestjs/microservices';
-import { MessageStatus } from 'src/shared/enums/message-status.enum';
+import { MessageStatus } from '../shared/enums/message-status.enum';
 import { CreateNotificationDto } from './dto/create-notification.dto';
 import { NotificationStatusDto } from './dto/notification-status.dto';
 import { UpdateNotificationStatusDto } from './dto/update-notification-status.dto';
