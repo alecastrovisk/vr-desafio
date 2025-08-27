@@ -1,0 +1,53 @@
+<div class="notificacao-container">
+  <h2>Sistema de Notificações</h2>
+
+  <div class="form-section">
+    <div class="input-group">
+      <label for="conteudoMensagem">Conteúdo da Mensagem:</label>
+      <textarea
+        id="conteudoMensagem"
+        [(ngModel)]="conteudoMensagem"
+        placeholder="Digite o conteúdo da sua notificação..."
+        rows="3"
+        class="message-input"
+      >
+      </textarea>
+    </div>
+
+    <button (click)="enviarNotificacao()" [disabled]="!conteudoMensagem.trim()" class="send-button">
+      Enviar Notificação
+    </button>
+  </div>
+
+  <div class="notifications-section">
+    <h3>Notificações Enviadas</h3>
+
+    <div class="notifications-list" *ngIf="notificacoes.length > 0; else noNotifications">
+      <div
+        *ngFor="let notificacao of notificacoes; trackBy: trackByMensagemId"
+        class="notification-item"
+      >
+        <div class="notification-header">
+          <span class="message-id">ID: {{ notificacao.mensagemId }}</span>
+          <span class="timestamp">{{ notificacao.timestamp | date : 'dd/MM/yyyy HH:mm:ss' }}</span>
+        </div>
+
+        <div class="notification-content">
+          <p class="message-content">{{ notificacao.conteudoMensagem }}</p>
+        </div>
+
+        <div class="notification-status">
+          <span class="status-badge" [ngClass]="getStatusClass(notificacao.status)">
+            {{ getStatusText(notificacao.status) }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #noNotifications>
+      <div class="no-notifications">
+        <p>Nenhuma notificação enviada ainda.</p>
+      </div>
+    </ng-template>
+  </div>
+</div>
